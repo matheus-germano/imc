@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, StatusBar } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import Home from './src/pages/Home';
 import Results from './src/pages/Results';
 import About from './src/pages/About';
@@ -12,16 +12,26 @@ const Tab = createBottomTabNavigator();
 const App: () => React$Node = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="light-content" backgroundColor='#88D498' />
       <NavigationContainer>
-        <Tab.Navigator initialRouteName='home' tabBarOptions={{activeTintColor: '#114B5F'}}>
+        <Tab.Navigator initialRouteName='home' tabBarOptions={{
+          activeTintColor: '#114B5F', 
+          inactiveTintColor: '#999', 
+          showLabel: false,
+          keyboardHidesTabBar: true,
+          style: {
+            height: 80,
+            borderRadius: 10,
+            backgroundColor: '#f0f0f7',
+          },
+        }}>
           <Tab.Screen 
             name='home' 
             component={Home}
             options={{
               tabBarLabel: '',
               tabBarIcon: ({ color, size }) => (
-                <Icon name="home" color={'#114B5F'} size={32} />
+                <Icon name="home" color={color} size={32} />
               ),
             }}
           />
@@ -31,7 +41,7 @@ const App: () => React$Node = () => {
             options={{
               tabBarLabel: '',
               tabBarIcon: ({ color, size }) => (
-                <Icon name="assignment" color={'#114B5F'} size={32} />
+                <Icon name="assignment" color={color} size={32} />
               ),
             }}
           />
@@ -41,7 +51,7 @@ const App: () => React$Node = () => {
             options={{
               tabBarLabel: '',
               tabBarIcon: ({ color, size }) => (
-                <Icon name="help-outline" color={'#114B5F'} size={32} />
+                <Icon name="help-outline" color={color} size={32} style={{padding: 20}} />
               ),
             }}
           />
